@@ -5,7 +5,7 @@ exports.getProducts = (req, res) => {
         res.render('shop/product-list.ejs', {
         products: products,
         pageTitle: 'All Products',
-        path: '/'
+        path: '/products'
         }); 
     });
 };
@@ -13,13 +13,12 @@ exports.getProducts = (req, res) => {
 exports.getProduct = (req, res) => {
     const productId = req.params.productId;
     Product.findById(productId, product => {
-        console.log(product);
         res.render('shop/product-detail.ejs',{
             product: product,
-            pageTitle: product.title,
+            pageTitle: productId.title,
             path: '/products'
-        })
-    })
+        });
+    });
     // console.log(req.params.productId);
     // res.redirect('/');
 }
